@@ -1,0 +1,25 @@
+
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: flask-deployment
+  namespace: flask-namespace
+spec:
+  replicas: 3
+
+  selector:
+    matchLabels:
+      app: flask-app
+
+  template:
+    metadata:
+      labels:
+        app: flask-app
+
+    spec:
+      containers:
+        - name: flask-container
+          image: redhatumair/flask-kind:latest
+          ports:
+            - containerPort: 5000
